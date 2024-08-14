@@ -1,0 +1,110 @@
+[gd_scene load_steps=4 format=3 uid="uid://bybydbtltm4p3"]
+
+[ext_resource type="Script" path="res://scene/menu.gd" id="1_w7awa"]
+[ext_resource type="Texture2D" uid="uid://b4534qr1bep1u" path="res://asset/desktop-wallpaper-firewatch-background-chill-gaming.jpg" id="2_tqii8"]
+[ext_resource type="AudioStream" uid="uid://d04xljajbxpeg" path="res://asset/audio/Greener Pastures MP3.mp3" id="3_mmjih"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_w7awa")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Play" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -24.0
+offset_right = 87.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "PLAY"
+
+[node name="Quit" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = 76.0
+offset_right = 87.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "QUIT"
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -224.0
+offset_right = 20.0
+offset_bottom = -201.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Delivery Game"
+
+[node name="Highscore" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -353.5
+offset_top = -174.0
+offset_right = 353.5
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Highscore: 000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Controls" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 210.0
+offset_top = -17.0
+offset_right = 398.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Controls:
+Jump = Space
+Movement = Arrow Keys
+Pickup/Deliver = F
+Drop Item = G
+Pause/Unpause = Esc
+"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+z_index = -1
+position = Vector2(576, 323.75)
+scale = Vector2(1.35294, 1.3811)
+texture = ExtResource("2_tqii8")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mmjih")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Quit" to="." method="_on_quit_pressed"]

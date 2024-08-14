@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://chatts32utk1w"]
+
+[ext_resource type="Script" path="res://scene/pause.gd" id="1_wgdiv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3npb"]
+bg_color = Color(0.365892, 0.681958, 0.44109, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vt62d"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn0eg"]
+bg_color = Color(0.892132, 0, 0.284738, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2g3l3"]
+bg_color = Color(0.57625, 0.645631, 5.77569e-07, 1)
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_wgdiv")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x3npb")
+
+[node name="GamePause" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -32.0
+offset_right = 85.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Game is paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = 43.0
+offset_right = -25.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vt62d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qn0eg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2g3l3")
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = 44.0
+offset_right = 181.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vt62d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qn0eg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2g3l3")
+text = "Main Menu"
+
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

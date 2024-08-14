@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://ba1blm0wgoc3o"]
+
+[ext_resource type="Script" path="res://scene/npc_1.gd" id="1_7qp1u"]
+[ext_resource type="Texture2D" uid="uid://cilf11dqn37m4" path="res://asset/wizard/wizzard_f_idle_anim_f0.png" id="2_1xlef"]
+[ext_resource type="PackedScene" uid="uid://bpx667fw3etrd" path="res://scene/expulsion.tscn" id="3_shxmr"]
+[ext_resource type="Texture2D" uid="uid://c266cdcs3b55x" path="res://asset/wizard/wizzard_f_idle_anim_f1.png" id="3_yvskq"]
+[ext_resource type="Texture2D" uid="uid://dv2ptjf6hxjsx" path="res://asset/wizard/wizzard_f_idle_anim_f2.png" id="4_bgx0u"]
+[ext_resource type="Texture2D" uid="uid://rnaulmpna437" path="res://asset/wizard/wizzard_f_idle_anim_f3.png" id="5_tb8oe"]
+[ext_resource type="AudioStream" uid="uid://dlqnqjymnd718" path="res://asset/audio/item-pick-up-38258.mp3" id="7_n0ya8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0y3k0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1xlef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yvskq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bgx0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tb8oe")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lku1"]
+size = Vector2(17, 20)
+
+[node name="NPC2" type="Area2D" node_paths=PackedStringArray("item_label", "expulsion")]
+script = ExtResource("1_7qp1u")
+NPC_name = "npc2"
+item_label = NodePath("ItemLabel")
+expulsion = NodePath("Expulsion")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0y3k0")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.750669
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_1lku1")
+
+[node name="ItemLabel" type="Label" parent="."]
+offset_left = -23.0
+offset_top = -31.0
+offset_right = 22.0
+offset_bottom = -8.0
+
+[node name="Expulsion" parent="." instance=ExtResource("3_shxmr")]
+script = null
+
+[node name="Item Deliver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_n0ya8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

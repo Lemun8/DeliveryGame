@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcnkpo5h7seca"]
+
+[ext_resource type="Texture2D" uid="uid://dhu064uxoj4uw" path="res://Small-8-Direction-Characters_by_AxulArt.png" id="1_776nc"]
+[ext_resource type="Script" path="res://scene/player.gd" id="1_c85ta"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfbg8"]
+atlas = ExtResource("1_776nc")
+region = Rect2(32, 48, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmk0l"]
+atlas = ExtResource("1_776nc")
+region = Rect2(32, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsm5k"]
+atlas = ExtResource("1_776nc")
+region = Rect2(32, 72, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nxvfd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfbg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmk0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsm5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfbg8")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fuygw"]
+size = Vector2(11, 17)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_animation", "item_label") groups=["Player"]]
+collision_mask = 14
+script = ExtResource("1_c85ta")
+player_animation = NodePath("AnimatedSprite2D")
+item_label = NodePath("ItemLabel")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nxvfd")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_fuygw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_fuygw")
+
+[node name="ItemLabel" type="Label" parent="."]
+offset_left = -25.0
+offset_top = -31.0
+offset_right = 24.0
+offset_bottom = -8.0
+theme_override_font_sizes/font_size = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

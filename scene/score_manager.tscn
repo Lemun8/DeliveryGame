@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://26f1nrd71hcy"]
+
+[ext_resource type="Script" path="res://score_manager.gd" id="1_ox50w"]
+
+[node name="Panel" type="Control" node_paths=PackedStringArray("score_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ox50w")
+score_label = NodePath("CanvasLayer/Label")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Score: 0"
